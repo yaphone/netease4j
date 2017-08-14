@@ -1,5 +1,8 @@
 package cn.zhouyafeng.netease.core;
 
+import cn.zhouyafeng.netease.network.HttpClient;
+import okhttp3.OkHttpClient;
+
 /**
  * 核心存储类， 单例
  * 
@@ -10,13 +13,14 @@ package cn.zhouyafeng.netease.core;
  */
 public class Core {
 
-	private Core instance;
+	private static Core instance;
+	private OkHttpClient httpClient = HttpClient.getHttpClient();
 
 	private Core() {
 
 	}
 
-	public Core getInsance() {
+	public static Core getInsance() {
 		if (instance == null) {
 			synchronized (Core.class) {
 				if (instance == null) {
@@ -25,6 +29,10 @@ public class Core {
 			}
 		}
 		return instance;
+	}
+
+	public OkHttpClient getHttpClient() {
+		return httpClient;
 	}
 
 }

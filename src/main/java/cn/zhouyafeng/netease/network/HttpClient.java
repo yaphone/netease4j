@@ -13,13 +13,13 @@ import java.io.IOException;
  * @date 2017/8/14 21:49
  */
 public class HttpClient {
-    private OkHttpClient instance;
+    private static OkHttpClient okHttpClient;
 
-    private OkHttpClient getInstance(){
-        if(instance == null){
+    public static OkHttpClient getHttpClient(){
+        if(okHttpClient == null){
             synchronized (HttpClient.class){
-                if (instance == null){
-                    instance = new OkHttpClient().newBuilder().addInterceptor(
+                if (okHttpClient == null){
+                    okHttpClient = new OkHttpClient().newBuilder().addInterceptor(
                             new Interceptor() {
                                 @Override
                                 public Response intercept(Chain chain) throws IOException {
@@ -40,7 +40,7 @@ public class HttpClient {
                 }
             }
         }
-        return instance;
+        return okHttpClient;
     }
 
 

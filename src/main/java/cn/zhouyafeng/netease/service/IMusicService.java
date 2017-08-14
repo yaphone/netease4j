@@ -10,4 +10,6 @@ package cn.zhouyafeng.netease.service;
  */
 public interface IMusicService {
 
+	public void getTopSongList();
+
 }
