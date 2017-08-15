@@ -30,31 +30,45 @@ public class MusicServiceImpl implements IMusicService {
 	private Core core = Core.getInsance();
 	private OkHttpClient httpClient = core.getHttpClient();
 
-	/**
-	 * 热门单曲
-	 * 
-	 * @date 2017年8月14日 下午11:23:48
-	 */
 	@Override
-	public void getTopSongList() {
+	public List<Long> getTopSongList() {
+		List<Long> songIdList = new ArrayList<Long>();
 		String url = URL.BASE_URL.getUrl() + URL.TOP_SONG_URL.getUrl();
-		System.out.println(url);
-		// url = "http://www.baidu.com";
 		Request req = new Request.Builder().url(url).build();
 		Call call = httpClient.newCall(req);
 		try {
-			List<String> songIdList = new ArrayList<String>();
 			Response resp = call.execute();
-			String content = resp.body().string();
+			String result = resp.body().string();
 			String regEx = "/song\\?id=(\\d+)";
-			Matcher matcher = CommonTools.getMatcher(regEx, content);
+			Matcher matcher = CommonTools.getMatcher(regEx, result);
 			while (matcher.find()) {
-				songIdList.add(matcher.group().substring("/song?id=".length(), matcher.group().length()));
+				songIdList.add(Long.valueOf(matcher.group().substring("/song?id=".length(), matcher.group().length())));
 			}
+		} catch (Exception e) {
+			LOG.error("getTopSongList ", e.getMessage());
+		}
+		return songIdList;
+	}
 
+	/**
+	 * 获取歌曲详情
+	 * 
+	 * @date 2017年8月16日 上午12:05:47
+	 * @param songId
+	 */
+	@Override
+	public void getSongDetail(long songId) {
+		String url = String.format(URL.SONG_DETAIL_URL.getUrl(), songId, songId);
+		Request req = new Request.Builder().url(url).build();
+		Call call = httpClient.newCall(req);
+		try {
+			Response resp = call.execute();
+			String result = resp.body().string();
+			System.out.println(result);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
 	}
 
 }

@@ -1,5 +1,7 @@
 package cn.zhouyafeng.netease.service;
 
+import java.util.List;
+
 /**
  * 网易云音乐服务接口
  * 
@@ -10,6 +12,13 @@ package cn.zhouyafeng.netease.service;
  */
 public interface IMusicService {
 
-	public void getTopSongList();
+	/**
+	 * 热门单曲
+	 * 
+	 * @date 2017年8月14日 下午11:23:48
+	 */
+	public List<Long> getTopSongList();
+
+	public void getSongDetail(long songId);
 
 }

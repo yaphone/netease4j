@@ -7,10 +7,11 @@ package cn.zhouyafeng.netease.enums;
  */
 public enum URL {
 
-	BASE_URL("http://music.163.com", "基本URL"),
-	TOP_SONG_URL("/discover/toplist?id=3779629", "新歌榜"),
+	BASE_URL("http://music.163.com", "基本URL"), TOP_SONG_URL("/discover/toplist?id=3779629", "新歌榜"),
 
-	RECOMMAND_URL("http://music.163.com/weapi/v1/discovery/recommend/songs?csrf_token=", "推荐歌单");
+	RECOMMAND_URL("http://music.163.com/weapi/v1/discovery/recommend/songs?csrf_token=", "推荐歌单"),
+
+	SONG_DETAIL_URL("http://music.163.com/api/song/detail/?id=%d&ids=[%d]", "单曲详情");
 
 	private String url;
 	private String desc;
