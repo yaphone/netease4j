@@ -26,7 +26,7 @@ public class HttpClient {
                                     Request request = chain.request()
                                             .newBuilder()
                                             .addHeader("Accept", "*/*")
-                                            .addHeader("Accept-Encoding", "gzip,deflate,sdch")
+                                            //.addHeader("Accept-Encoding", "gzip,deflate,sdch")
                                             .addHeader("Accept-Language", "zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4")
                                             .addHeader("Connection", "keep-alive")
                                             .addHeader("Content-Type", "application/x-www-form-urlencoded")
