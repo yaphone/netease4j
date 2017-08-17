@@ -19,6 +19,6 @@ public interface IMusicService {
 	 */
 	public List<Long> getTopSongList();
 
-	public void getSongDetail(long songId);
+	public String getSongDetail(long songId);
 
 }

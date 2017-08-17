@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.zhouyafeng.netease.beans.SongInfo;
 import cn.zhouyafeng.netease.core.Core;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.service.IMusicService;
@@ -57,18 +58,25 @@ public class MusicServiceImpl implements IMusicService {
 	 * @param songId
 	 */
 	@Override
-	public void getSongDetail(long songId) {
+	public String getSongDetail(long songId) {
+		String result = null;
 		String url = String.format(URL.SONG_DETAIL_URL.getUrl(), songId, songId);
 		Request req = new Request.Builder().url(url).build();
 		Call call = httpClient.newCall(req);
 		try {
 			Response resp = call.execute();
-			String result = resp.body().string();
+			result = resp.body().string();
 			System.out.println(result);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		return result;
 
+	}
+
+	private SongInfo digInfo() {
+		return null;
+		// TODO
 	}
 
 }
