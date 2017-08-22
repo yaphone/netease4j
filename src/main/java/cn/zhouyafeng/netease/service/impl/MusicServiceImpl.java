@@ -48,6 +48,7 @@ public class MusicServiceImpl implements IMusicService {
 		} catch (Exception e) {
 			LOG.error("getTopSongList ", e.getMessage());
 		}
+		System.out.println(songIdList);
 		return songIdList;
 	}
 
