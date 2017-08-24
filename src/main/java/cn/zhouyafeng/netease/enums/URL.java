@@ -11,7 +11,11 @@ public enum URL {
 
 	RECOMMAND_URL("http://music.163.com/weapi/v1/discovery/recommend/songs?csrf_token=", "推荐歌单"),
 
-	SONG_DETAIL_URL("http://music.163.com/api/song/detail/?id=%d&ids=[%d]", "单曲详情");
+	SONG_DETAIL_URL("http://music.163.com/api/song/detail/?id=%d&ids=[%d]", "单曲详情"),
+	NEW_SONG_DETAIL_URL("http://music.163.com/weapi/song/enhance/player/url?csrf_token=", "单曲详情")
+
+
+	;
 
 	private String url;
 	private String desc;

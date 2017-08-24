@@ -1,5 +1,8 @@
 package cn.zhouyafeng.netease.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.List;
 
 /**
@@ -19,6 +22,6 @@ public interface IMusicService {
 	 */
 	public List<Long> getTopSongList();
 
-	public String getSongDetail(long songId);
+	public JSONArray getSongDetail(long songId);
 
 }

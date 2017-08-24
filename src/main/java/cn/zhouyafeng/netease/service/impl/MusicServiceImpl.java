@@ -1,9 +1,16 @@
 package cn.zhouyafeng.netease.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.sun.org.apache.regexp.internal.RE;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,10 +19,6 @@ import cn.zhouyafeng.netease.core.Core;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.service.IMusicService;
 import cn.zhouyafeng.netease.utils.CommonTools;
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * 音乐服务实现类
@@ -59,20 +62,42 @@ public class MusicServiceImpl implements IMusicService {
 	 * @param songId
 	 */
 	@Override
-	public String getSongDetail(long songId) {
+	public JSONArray getSongDetail(long songId) {
 		String result = null;
 		String url = String.format(URL.SONG_DETAIL_URL.getUrl(), songId, songId);
 		Request req = new Request.Builder().url(url).build();
 		Call call = httpClient.newCall(req);
 		try {
 			Response resp = call.execute();
-			result = resp.body().string();
-			System.out.println(result);
+			JSONObject songInfo = JSON.parseObject(resp.body().string());
+			return songInfo.getJSONArray("songs");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return result;
+		return null;
+	}
 
+	public String getUrlNewApi(JSONArray songDetail){
+		String bateRate = "320000";
+		String id = songDetail.getJSONObject(0).getString("id");
+		String url = URL.NEW_SONG_DETAIL_URL.getUrl();
+		Map<String, String> dataMap = new HashMap<>();
+		dataMap.put("ids", id);
+		dataMap.put("br", bateRate);
+		dataMap.put("csrf_token", "");
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON.toJSONString(dataMap));
+		Request req = new Request.Builder().url(url).post(requestBody).build();
+		Call call = httpClient.newCall(req);
+
+		try {
+			Response resp = call.execute();
+			System.out.println(resp.body().string());
+			JSONObject result = JSON.parseObject(resp.body().string());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 	private SongInfo digInfo() {
