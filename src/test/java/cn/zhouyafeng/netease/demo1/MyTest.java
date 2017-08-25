@@ -7,9 +7,9 @@ import com.alibaba.fastjson.JSONArray;
 public class MyTest {
 	public static void main(String[] args) {
 		MusicServiceImpl musicService = new MusicServiceImpl();
-		//musicService.getTopSongList();
-		JSONArray songDetail = musicService.getSongDetail(499274178);
-		musicService.getUrlNewApi(songDetail);
+		musicService.getTopSongList();
+		//JSONArray songDetail = musicService.getSongDetail(499274178);
+		//musicService.getUrlNewApi(songDetail);
 	}
 
 }
