@@ -7,14 +7,17 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-/**
- * @author https://github.com/yaphone
- * @version 1.0
- * @date 2017/8/14 21:49
- */
+
+/**  
+* @ClassName: HttpClient  
+* @Description: TODO(这里用一句话描述这个类的作用)  
+* @author https://github.com/yaphone
+* @date 2017年9月2日 下午11:42:11  
+*    
+*/
 public class HttpClient {
     private static OkHttpClient okHttpClient;
-
+    
     public static OkHttpClient getHttpClient(){
         if(okHttpClient == null){
             synchronized (HttpClient.class){
@@ -41,6 +44,21 @@ public class HttpClient {
             }
         }
         return okHttpClient;
+    }
+    
+    /**
+     * 
+     * @date 2017年9月2日 下午11:29:48
+     * @param 
+     * @return void
+     *
+     */
+    private void doGet(){
+    	
+    }
+    
+    private void doPost(){
+    	
     }
 
 

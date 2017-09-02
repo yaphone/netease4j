@@ -31,6 +31,7 @@ public class Core {
 		return instance;
 	}
 
+	
 	public OkHttpClient getHttpClient() {
 		return httpClient;
 	}
