@@ -7,9 +7,9 @@ public class MyTest {
 	public static void main(String[] args) {
 		MusicServiceImpl musicService = new MusicServiceImpl();
 		//musicService.getTopSongList();
-		JSONArray songDetail = musicService.getSongDetail(499274178);
-		System.out.println(songDetail);
-		//musicService.getUrlNewApi(songDetail);
+		//JSONArray songDetail = musicService.getSongDetail(499274178);
+		//System.out.println(songDetail);
+		musicService.getMusicInfo();
 	}
 
 }

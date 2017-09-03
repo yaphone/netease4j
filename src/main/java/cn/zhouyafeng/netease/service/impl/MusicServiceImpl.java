@@ -63,7 +63,6 @@ public class MusicServiceImpl implements IMusicService {
 	 */
 	@Override
 	public JSONArray getSongDetail(long songId) {
-		String result = null;
 		String url = String.format(URL.SONG_DETAIL_URL.getUrl(), songId, songId);
 		Request req = new Request.Builder().url(url).build();
 		Call call = httpClient.newCall(req);
@@ -77,6 +76,14 @@ public class MusicServiceImpl implements IMusicService {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @date 2017年9月2日 下午11:47:36
+	 * @param @param songDetail
+	 * @param @return
+	 * @return String
+	 *
+	 */
 	public String getUrlNewApi(JSONArray songDetail){
 		String bateRate = "320000";
 		String id = songDetail.getJSONObject(0).getString("id");
@@ -103,6 +110,37 @@ public class MusicServiceImpl implements IMusicService {
 	private SongInfo digInfo() {
 		return null;
 		// TODO
+	}
+	
+	/**
+	 * 获取音乐信息
+	 * @date 2017年9月2日 下午11:48:34
+	 * @param 
+	 * @return void
+	 *
+	 */
+	public void getMusicInfo(){
+		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
+		String id = "347230";
+		Map<String, String> dataMap = new HashMap<String, String>();
+		dataMap.put("ids", id);
+		dataMap.put("br", "999000");
+		dataMap.put("csrf_token", "");
+		
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON.toJSONString(dataMap));
+		Request req = new Request.Builder().url(url).post(requestBody).build();
+		Call call = httpClient.newCall(req);
+
+		try {
+			Response resp = call.execute();
+			System.out.println(resp.isSuccessful());
+			System.out.println(resp.body().string());
+			JSONObject result = JSON.parseObject(resp.body().string());
+			System.out.println(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

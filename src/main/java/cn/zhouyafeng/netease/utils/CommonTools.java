@@ -26,5 +26,7 @@ public class CommonTools {
 		Matcher matcher = pattern.matcher(text);
 		return matcher;
 	}
+	
+
 
 }
