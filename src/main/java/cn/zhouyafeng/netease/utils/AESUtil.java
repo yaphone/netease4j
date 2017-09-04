@@ -1,86 +1,86 @@
 package cn.zhouyafeng.netease.utils;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AESUtil {
-	public static void main(String[] args) {  
-        // 密钥的种子，可以是任何形式，本质是字节数组  
-                String strKey = "lttclaw";  
-                // 密钥数据  
-                byte[] rawKey = getRawKey(strKey.getBytes());  
-                // 密码的明文  
-                String clearPwd = "My world is full of wonders! No body can match my spirit";  
-                // 密码加密后的密文  
-                byte[] encryptedByteArr = encrypt(rawKey, clearPwd);  
-                String encryptedPwd = new String(encryptedByteArr);  
-                System.out.println(encryptedPwd);  
-                // 解密后的字符串  
-                String decryptedPwd = decrypt(encryptedByteArr, rawKey);  
-                System.out.println(decryptedPwd);  
-  
-    }  
-  
-    /** 
-     * @param rawKey 
-     *            密钥 
-     * @param clearPwd 
-     *            明文字符串 
-     * @return 密文字节数组 
-     */  
-    private static byte[] encrypt(byte[] rawKey, String clearPwd) {  
-        try {  
-            SecretKeySpec secretKeySpec = new SecretKeySpec(rawKey, "AES");  
-            Cipher cipher = Cipher.getInstance("AES");  
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);  
-            byte[] encypted = cipher.doFinal(clearPwd.getBytes());  
-            return encypted;  
-        } catch (Exception e) {  
-            return null;  
-        }  
-    }  
-  
-    /** 
-     * @param encrypted 
-     *            密文字节数组 
-     * @param rawKey 
-     *            密钥 
-     * @return 解密后的字符串 
-     */  
-    private static String decrypt(byte[] encrypted, byte[] rawKey) {  
-        try {  
-            SecretKeySpec secretKeySpec = new SecretKeySpec(rawKey, "AES");  
-            Cipher cipher = Cipher.getInstance("AES");  
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);  
-            byte[] decrypted = cipher.doFinal(encrypted);  
-            return new String(decrypted);  
-        } catch (Exception e) {  
-            return "";  
-        }  
-    }  
-  
-    /** 
-     * @param seed种子数据 
-     * @return 密钥数据 
-     */  
-    private static byte[] getRawKey(byte[] seed) {  
-        byte[] rawKey = null;  
-        try {  
-            KeyGenerator kgen = KeyGenerator.getInstance("AES");  
-            SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");  
-            secureRandom.setSeed(seed);  
-            // AES加密数据块分组长度必须为128比特，密钥长度可以是128比特、192比特、256比特中的任意一个  
-            kgen.init(128, secureRandom);  
-            SecretKey secretKey = kgen.generateKey();  
-            rawKey = secretKey.getEncoded();  
-        } catch (NoSuchAlgorithmException e) {  
-        }  
-        return rawKey;  
-    }  
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
+/**
+ * 
+* @ClassName: AESUtil  
+* @Description: AES 是一种可逆加密算法，对用户的敏感信息加密处理 对原始数据进行AES加密后，再进行Base64编码转化；
+* @author https://github.com/yaphone
+* @date 2017年9月5日 上午12:02:01  
+*
+ */
+public class AESUtil {
+
+	private static String ivParameter = "0102030405060708";
+
+	private AESUtil() {
+
+	}
+
+	/**
+	 * 加密算法
+	 * @date 2017年9月5日 上午12:04:33
+	 * @param @param sSrc
+	 * @param @param sKey
+	 * @param @return
+	 * @param @throws Exception
+	 * @return String
+	 *
+	 */
+	@SuppressWarnings("restriction")
+	public static String encrypt(String sSrc, String sKey) throws Exception {
+		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		byte[] raw = sKey.getBytes();
+		SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+		IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());// 使用CBC模式，需要一个向量iv，可增加加密算法的强度
+		cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+		byte[] encrypted = cipher.doFinal(sSrc.getBytes("utf-8"));
+		return new BASE64Encoder().encode(encrypted);// 此处使用BASE64做转码。
+	}
+
+	/**
+	 * 解密算法
+	 * @date 2017年9月5日 上午12:04:47
+	 * @param @param sSrc
+	 * @param @param sKey
+	 * @param @return
+	 * @param @throws Exception
+	 * @return String
+	 *
+	 */
+	@SuppressWarnings("restriction")
+	public static String decrypt(String sSrc, String sKey) throws Exception {
+		try {
+			byte[] raw = sKey.getBytes("ASCII");
+			SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());
+			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+			byte[] encrypted1 = new BASE64Decoder().decodeBuffer(sSrc);// 先用base64解密
+			byte[] original = cipher.doFinal(encrypted1);
+			String originalString = new String(original, "utf-8");
+			return originalString;
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		String cSrc = "{\"ids\":[\"347230\"],\"br\":999000,\"csrf_token\":\"\"}";
+		/*
+		 * 加密用的Key 可以用26个字母和数字组成 此处使用AES-128-CBC加密模式，key需要为16位。
+		 */
+		String sKey = "0CoJUm6Qyw8W8jud";
+
+		String enString = encrypt(cSrc, sKey);
+		System.out.println("加密后的字串是：" + enString);
+
+	}
 }
