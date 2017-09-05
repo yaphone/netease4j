@@ -6,19 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.regexp.internal.RE;
-import okhttp3.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import cn.zhouyafeng.netease.beans.SongInfo;
 import cn.zhouyafeng.netease.core.Core;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.service.IMusicService;
 import cn.zhouyafeng.netease.utils.CommonTools;
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 音乐服务实现类
@@ -79,12 +84,13 @@ public class MusicServiceImpl implements IMusicService {
 	/**
 	 * 
 	 * @date 2017年9月2日 下午11:47:36
-	 * @param @param songDetail
+	 * @param @param
+	 *            songDetail
 	 * @param @return
 	 * @return String
 	 *
 	 */
-	public String getUrlNewApi(JSONArray songDetail){
+	public String getUrlNewApi(JSONArray songDetail) {
 		String bateRate = "320000";
 		String id = songDetail.getJSONObject(0).getString("id");
 		String url = URL.NEW_SONG_DETAIL_URL.getUrl();
@@ -92,7 +98,8 @@ public class MusicServiceImpl implements IMusicService {
 		dataMap.put("ids", id);
 		dataMap.put("br", bateRate);
 		dataMap.put("csrf_token", "");
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON.toJSONString(dataMap));
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
+				JSON.toJSONString(dataMap));
 		Request req = new Request.Builder().url(url).post(requestBody).build();
 		Call call = httpClient.newCall(req);
 
@@ -111,23 +118,27 @@ public class MusicServiceImpl implements IMusicService {
 		return null;
 		// TODO
 	}
-	
+
 	/**
 	 * 获取音乐信息
+	 * 
 	 * @date 2017年9月2日 下午11:48:34
-	 * @param 
+	 * @param
 	 * @return void
 	 *
 	 */
-	public void getMusicInfo(){
+	public void getMusicInfo() {
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
-		String id = "347230";
-		Map<String, String> dataMap = new HashMap<String, String>();
-		dataMap.put("ids", id);
+		List<String> ids = new ArrayList<String>();
+		ids.add("347230");
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("ids", ids);
 		dataMap.put("br", "999000");
 		dataMap.put("csrf_token", "");
-		
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON.toJSONString(dataMap));
+		String 
+
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
+				JSON.toJSONString(dataMap));
 		Request req = new Request.Builder().url(url).post(requestBody).build();
 		Call call = httpClient.newCall(req);
 
