@@ -42,12 +42,19 @@ public class AESUtil {
 		String text = CommonTools.createDataStringForAES(dataMap);
 		String secKey = createSecretKey(16);
 		String encText = aesEncrypt(aesEncrypt(text, nonce), secKey);
+		return null;
 		
 	}
 	
 	public static String rsaEncrypt(String text, String pubKey, String modulus){
+		String result = "";
 		
+		String _text = "";
+		for(int i=text.length()-1; i>=0; i--){
+			_text += text.substring(i, i+1);
+		}
 		
+		return result;
 	}
 
 	/**
@@ -113,6 +120,11 @@ public class AESUtil {
 
 	public static void main(String[] args) throws Exception {
 
+		rsaTest();
+	}
+	
+	
+	private static void aesTest(){
 		String cSrc = "{\"ids\":[\"347230\"],\"br\":999000,\"csrf_token\":\"\"}";
 		/*
 		 * 加密用的Key 可以用26个字母和数字组成 此处使用AES-128-CBC加密模式，key需要为16位。
@@ -121,6 +133,12 @@ public class AESUtil {
 
 		String enString = aesEncrypt(cSrc, sKey);
 		System.out.println("加密后的字串是：" + enString);
-
+		
+	}
+	
+	private static void rsaTest(){
+		String text = "JCby1CvjeP9FYmCe";
+		String _text = rsaEncrypt(text, "", "");
+		System.out.println(_text);
 	}
 }
