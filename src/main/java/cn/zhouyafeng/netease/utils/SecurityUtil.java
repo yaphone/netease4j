@@ -1,11 +1,16 @@
 package cn.zhouyafeng.netease.utils;
 
-import java.util.Map;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.alibaba.fastjson.JSON;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -18,12 +23,14 @@ import sun.misc.BASE64Encoder;
  * @date 2017年9月5日 上午12:02:01
  *
  */
-public class AESUtil {
+public class SecurityUtil {
 
-	private static String ivParameter = "0102030405060708";
-	private static String nonce = "0CoJUm6Qyw8W8jud";
+	private static final String ivParameter = "0102030405060708";
+	private static final String nonce = "0CoJUm6Qyw8W8jud";
+	private static final String pubKey = "010001";
+	private static final String modulus = "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7";
 
-	private AESUtil() {
+	private SecurityUtil() {
 
 	}
 
@@ -38,22 +45,39 @@ public class AESUtil {
 		return key;
 	}
 	
-	public static String encrypt(Map<String, Object> dataMap){
-		String text = CommonTools.createDataStringForAES(dataMap);
+	public static LinkedHashMap<String, String> encrypt(LinkedHashMap<String, Object> dataMap){
+		//String text = CommonTools.createDataStringForAES(dataMap);
+		String text = JSON.toJSONString(dataMap);
 		String secKey = createSecretKey(16);
 		String encText = aesEncrypt(aesEncrypt(text, nonce), secKey);
-		return null;
+		String encSecKey = rsaEncrypt(secKey, pubKey, modulus);
+		
+		LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
+		result.put("params", encText);
+		result.put("encSecKey", encSecKey);
+		return result;
 		
 	}
 	
+	//rsa加密
 	public static String rsaEncrypt(String text, String pubKey, String modulus){
-		String result = "";
-		
 		String _text = "";
 		for(int i=text.length()-1; i>=0; i--){
 			_text += text.substring(i, i+1);
 		}
+		String hexText = HexUtil.str2HexStr(_text);
+		BigInteger biText = new BigInteger(hexText, 16);
+		BigInteger biEx = new BigInteger(pubKey, 16);
+		BigInteger biMod = new BigInteger(modulus, 16);
+		BigInteger bigRet = biText.modPow(biEx, biMod);
 		
+		String result = bigRet.toString(16);
+		int fill = 256 - result.length();
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i<fill; i++){
+			sb.append("0");
+		}
+		result = sb.toString() + result;
 		return result;
 	}
 
@@ -120,7 +144,8 @@ public class AESUtil {
 
 	public static void main(String[] args) throws Exception {
 
-		rsaTest();
+		//rsaTest("Yc7L6prbU6Rmyfn2");
+		encryptTest();
 	}
 	
 	
@@ -136,9 +161,19 @@ public class AESUtil {
 		
 	}
 	
-	private static void rsaTest(){
-		String text = "JCby1CvjeP9FYmCe";
-		String _text = rsaEncrypt(text, "", "");
+	private static void rsaTest(String text){
+		String _text = rsaEncrypt(text, pubKey, modulus);
 		System.out.println(_text);
+	}
+	
+	private static void encryptTest(){
+		List<String> ids = new ArrayList<String>();
+		ids.add("347230");
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("ids", ids);
+		dataMap.put("br", "999000");
+		dataMap.put("csrf_token", "");
+		LinkedHashMap<String, String> result = encrypt(dataMap);
+		System.out.println(result);
 	}
 }

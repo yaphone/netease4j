@@ -1,14 +1,12 @@
-package cn.zhouyafeng.netease;
+package cn.zhouyafeng.netease.utils;
 
-import java.math.BigInteger;
 
-public class SimpleTest {
-	
-	private final static char[] mChars = "0123456789abcdef".toCharArray();
+public class HexUtil {
+    
+private final static char[] mChars = "0123456789abcdef".toCharArray();
 	
 	public static void main(String[] args){
-		String str = new BigInteger("364242726a644457396b523042746e6c", 16).toString(10);
-		System.out.println(str);
+		System.out.println(str2HexStr("6BBrjdDW9kR0Btnl"));
 	}
 	
     public static String str2HexStr(String str){  
@@ -21,6 +19,5 @@ public class SimpleTest {
         }  
         return sb.toString().trim();  
     }
-	
-   
-}//class
+    
+}

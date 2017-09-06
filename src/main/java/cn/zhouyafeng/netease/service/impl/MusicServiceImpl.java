@@ -2,6 +2,7 @@ package cn.zhouyafeng.netease.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -18,6 +19,7 @@ import cn.zhouyafeng.netease.core.Core;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.service.IMusicService;
 import cn.zhouyafeng.netease.utils.CommonTools;
+import cn.zhouyafeng.netease.utils.SecurityUtil;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -131,21 +133,23 @@ public class MusicServiceImpl implements IMusicService {
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
 		List<String> ids = new ArrayList<String>();
 		ids.add("347230");
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("ids", ids);
 		dataMap.put("br", "999000");
 		dataMap.put("csrf_token", "");
 		//String 
+		
+		LinkedHashMap<String, String> paramMap = SecurityUtil.encrypt(dataMap);
 
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-				JSON.toJSONString(dataMap));
+		//System.out.println(paramMap);
+		String requestParams = CommonTools.createRequestParam(paramMap);
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
+				requestParams);
 		Request req = new Request.Builder().url(url).post(requestBody).build();
 		Call call = httpClient.newCall(req);
 
 		try {
 			Response resp = call.execute();
-			System.out.println(resp.isSuccessful());
-			System.out.println(resp.body().string());
 			JSONObject result = JSON.parseObject(resp.body().string());
 			System.out.println(result);
 
