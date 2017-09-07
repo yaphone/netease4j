@@ -2,14 +2,23 @@ package cn.zhouyafeng.netease.utils;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * 
+* @ClassName: UrlUtil  
+* @Description: URL编解码工具类
+* @author https://github.com/yaphone
+* @date 2017年9月6日 下午11:46:53  
+*
+ */
 public class UrlUtil {
     private final static String ENCODE = "GBK"; 
     /**
-     * URL 解码
-     *
+     * URL解码
+     * @date 2017年9月6日 下午11:46:44
+     * @param @param str
+     * @param @return
      * @return String
-     * @author lifq
-     * @date 2015-3-17 下午04:09:51
+     *
      */
     public static String getURLDecoderString(String str) {
         String result = "";
@@ -24,11 +33,12 @@ public class UrlUtil {
         return result;
     }
     /**
-     * URL 转码
-     *
+     * URL转码
+     * @date 2017年9月6日 下午11:46:27
+     * @param @param str
+     * @param @return
      * @return String
-     * @author lifq
-     * @date 2015-3-17 下午04:10:28
+     *
      */
     public static String getURLEncoderString(String str) {
         String result = "";
@@ -45,9 +55,10 @@ public class UrlUtil {
 
     /**
      * 
+     * @date 2017年9月6日 下午11:46:17
+     * @param @param args
      * @return void
-     * @author lifq
-     * @date 2015-3-17 下午04:09:16
+     *
      */
     public static void main(String[] args) {
         String str = "d6q84mPBTFoc5VqJeEabM/YyMEi7UuOLHmXj++y+nqEHROrd7ghojw3gr/5QPoCIXBRJJnmo6YxZJv0D8wCp9j/FJUV5ofxbAjsCF/GD7JxYsdKosKmrwwG4FVIuOKCU";

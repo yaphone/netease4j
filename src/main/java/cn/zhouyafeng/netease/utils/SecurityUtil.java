@@ -18,7 +18,7 @@ import sun.misc.BASE64Encoder;
 /**
  * 
  * @ClassName: AESUtil
- * @Description: AES 是一种可逆加密算法，对用户的敏感信息加密处理 对原始数据进行AES加密后，再进行Base64编码转化；
+ * @Description: 安全工具类
  * @author https://github.com/yaphone
  * @date 2017年9月5日 上午12:02:01
  *

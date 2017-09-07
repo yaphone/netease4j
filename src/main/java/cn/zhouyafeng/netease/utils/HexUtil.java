@@ -1,6 +1,14 @@
 package cn.zhouyafeng.netease.utils;
 
 
+/**
+ * 
+* @ClassName: HexUtil  
+* @Description: 字符串转Hex工具类  
+* @author https://github.com/yaphone
+* @date 2017年9月6日 下午11:47:55  
+*
+ */
 public class HexUtil {
     
 private final static char[] mChars = "0123456789abcdef".toCharArray();
