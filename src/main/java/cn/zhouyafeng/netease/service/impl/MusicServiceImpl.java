@@ -129,15 +129,12 @@ public class MusicServiceImpl implements IMusicService {
 	 * @return void
 	 *
 	 */
-	public void getMusicInfo() {
+	public void getMusicInfo(List<String> ids) {
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
-		List<String> ids = new ArrayList<String>();
-		ids.add("347230");
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("ids", ids);
 		dataMap.put("br", "999000");
 		dataMap.put("csrf_token", "");
-		//String 
 		
 		LinkedHashMap<String, String> paramMap = SecurityUtil.encrypt(dataMap);
 

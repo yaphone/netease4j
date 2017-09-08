@@ -1,15 +1,21 @@
 package cn.zhouyafeng.netease.demo1;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
 import cn.zhouyafeng.netease.service.impl.MusicServiceImpl;
-import com.alibaba.fastjson.JSONArray;
 
 public class MyTest {
-	public static void main(String[] args) {
-		MusicServiceImpl musicService = new MusicServiceImpl();
-		//musicService.getTopSongList();
-		//JSONArray songDetail = musicService.getSongDetail(499274178);
-		//System.out.println(songDetail);
-		musicService.getMusicInfo();
+	MusicServiceImpl musicService = new MusicServiceImpl();
+	
+	
+	@Test
+	public void getMusicInfoTest(){
+		List<String> ids = new ArrayList<String>();
+		ids.add("347230");
+		musicService.getMusicInfo(ids);
 	}
 
 }
