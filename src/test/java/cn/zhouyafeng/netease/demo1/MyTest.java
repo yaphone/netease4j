@@ -11,11 +11,17 @@ public class MyTest {
 	MusicServiceImpl musicService = new MusicServiceImpl();
 	
 	
-	@Test
+	//@Test
 	public void getMusicInfoTest(){
 		List<String> ids = new ArrayList<String>();
 		ids.add("347230");
 		musicService.getMusicInfo(ids);
+	}
+	
+	@Test
+	public void getSearchSuggestTest(){
+		String keywords = "海阔天空";
+		musicService.getSearchSuggest(keywords);
 	}
 
 }

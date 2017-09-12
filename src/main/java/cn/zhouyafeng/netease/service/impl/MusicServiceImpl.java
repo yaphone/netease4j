@@ -154,5 +154,39 @@ public class MusicServiceImpl implements IMusicService {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 搜索建议
+	 * @date 2017年9月12日 下午11:40:42
+	 * @param @param keywords
+	 * @return void
+	 *
+	 */
+	public void getSearchSuggest(String keywords){
+		String url = URL.BASE_URL.getUrl() + "/weapi/search/suggest/web" ;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("s", keywords);
+		
+		LinkedHashMap<String, String> paramMap = SecurityUtil.encrypt(dataMap);
+
+		//System.out.println(paramMap);
+		String requestParams = CommonTools.createRequestParam(paramMap);
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
+				requestParams);
+		Request req = new Request.Builder().url(url).post(requestBody).build();
+		Call call = httpClient.newCall(req);
+
+		try {
+			Response resp = call.execute();
+			JSONObject result = JSON.parseObject(resp.body().string());
+			System.out.println(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 }
