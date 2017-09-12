@@ -1,10 +1,8 @@
 package cn.zhouyafeng.netease.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 
 import org.slf4j.Logger;
@@ -14,7 +12,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import cn.zhouyafeng.netease.beans.SongInfo;
 import cn.zhouyafeng.netease.core.Core;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.service.IMusicService;
@@ -83,53 +80,10 @@ public class MusicServiceImpl implements IMusicService {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @date 2017年9月2日 下午11:47:36
-	 * @param @param
-	 *            songDetail
-	 * @param @return
-	 * @return String
-	 *
-	 */
-	public String getUrlNewApi(JSONArray songDetail) {
-		String bateRate = "320000";
-		String id = songDetail.getJSONObject(0).getString("id");
-		String url = URL.NEW_SONG_DETAIL_URL.getUrl();
-		Map<String, String> dataMap = new HashMap<>();
-		dataMap.put("ids", id);
-		dataMap.put("br", bateRate);
-		dataMap.put("csrf_token", "");
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-				JSON.toJSONString(dataMap));
-		Request req = new Request.Builder().url(url).post(requestBody).build();
-		Call call = httpClient.newCall(req);
-
-		try {
-			Response resp = call.execute();
-			System.out.println(resp.body().string());
-			JSONObject result = JSON.parseObject(resp.body().string());
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
-	}
-
-	private SongInfo digInfo() {
-		return null;
-		// TODO
-	}
-
-	/**
-	 * 获取音乐信息
-	 * 
-	 * @date 2017年9月2日 下午11:48:34
-	 * @param
-	 * @return void
-	 *
-	 */
-	public void getMusicInfo(List<String> ids) {
+	
+	@Override
+	public JSONObject getMusicInfo(List<String> ids) {
+		JSONObject result = null;
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("ids", ids);
@@ -147,22 +101,18 @@ public class MusicServiceImpl implements IMusicService {
 
 		try {
 			Response resp = call.execute();
-			JSONObject result = JSON.parseObject(resp.body().string());
+			result = JSON.parseObject(resp.body().string());
 			System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
-	/**
-	 * 搜索建议
-	 * @date 2017年9月12日 下午11:40:42
-	 * @param @param keywords
-	 * @return void
-	 *
-	 */
-	public void getSearchSuggest(String keywords){
+	@Override
+	public JSONObject getSearchSuggest(String keywords){
+		JSONObject result = null;
 		String url = URL.BASE_URL.getUrl() + "/weapi/search/suggest/web" ;
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("csrf_token", "");
@@ -179,12 +129,13 @@ public class MusicServiceImpl implements IMusicService {
 
 		try {
 			Response resp = call.execute();
-			JSONObject result = JSON.parseObject(resp.body().string());
-			System.out.println(result);
+			result = JSON.parseObject(resp.body().string());
+			//System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 		
 	}
 	
