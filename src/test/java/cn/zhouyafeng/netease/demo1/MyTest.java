@@ -5,10 +5,20 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.zhouyafeng.netease.service.impl.MusicServiceImpl;
 
 public class MyTest {
 	MusicServiceImpl musicService = new MusicServiceImpl();
+	
+	@Test
+	public void loginTest(){
+		String phoneNum = "18980869903";
+		String password = "WO19891226";
+		JSONObject res = musicService.cellphoneLogin(phoneNum, password);
+		System.out.println(res);
+	}
 	
 	//@Test
 	public void getTopSongListTest(){
@@ -16,7 +26,7 @@ public class MyTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void getSongDetailTest(){
 		System.out.println(musicService.getSongDetail(503207093));
 	}

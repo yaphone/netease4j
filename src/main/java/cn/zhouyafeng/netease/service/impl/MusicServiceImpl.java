@@ -58,6 +58,43 @@ public class MusicServiceImpl implements IMusicService {
 		System.out.println(songIdList);
 		return songIdList;
 	}
+	
+	/**
+	 * 手机登陆
+	 * @date 2017年9月13日 下午11:44:58
+	 * @param @param phoneNum
+	 * @param @param password
+	 * @return void
+	 *
+	 */
+	public JSONObject cellphoneLogin(String phoneNum, String password){
+		JSONObject result = null;
+		String url = URL.BASE_URL.getUrl() + "/weapi/login/cellphone";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("phone", phoneNum);
+		dataMap.put("password", SecurityUtil.getMD5(password));
+		dataMap.put("rememberLogin", "true");
+		
+		LinkedHashMap<String, String> paramMap = SecurityUtil.encrypt(dataMap);
+
+		//System.out.println(paramMap);
+		String requestParams = CommonTools.createRequestParam(paramMap);
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
+				requestParams);
+		Request req = new Request.Builder().url(url).post(requestBody).build();
+		Call call = httpClient.newCall(req);
+
+		try {
+			Response resp = call.execute();
+			result = JSON.parseObject(resp.body().string());
+			System.out.println(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 
 	/**
 	 * 获取歌曲详情
