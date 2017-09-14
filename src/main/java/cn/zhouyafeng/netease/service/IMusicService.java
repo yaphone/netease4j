@@ -2,7 +2,6 @@ package cn.zhouyafeng.netease.service;
 
 import java.util.List;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -16,13 +15,15 @@ import com.alibaba.fastjson.JSONObject;
 public interface IMusicService {
 
 	/**
-	 * 热门单曲
-	 * 
-	 * @date 2017年8月14日 下午11:23:48
+	 * 手机登陆
+	 * @date 2017年9月15日 上午12:05:48
+	 * @param @param phoneNum
+	 * @param @param password
+	 * @param @return
+	 * @return JSONObject
+	 *
 	 */
-	public List<Long> getTopSongList();
-
-	public JSONArray getSongDetail(long songId);
+	public JSONObject cellphoneLogin(String phoneNum, String password);
 	
 	/**
 	 * 获取音乐信息

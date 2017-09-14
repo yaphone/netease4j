@@ -1,4 +1,4 @@
-package cn.zhouyafeng.netease.demo1;
+package cn.zhouyafeng.netease.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,8 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
-	public void getTopSongListTest(){
-		musicService.getTopSongList();
-	}
 	
-	
-	//@Test
-	public void getSongDetailTest(){
-		System.out.println(musicService.getSongDetail(503207093));
-	}
-	
-	//@Test
+	@Test
 	public void getMusicInfoTest(){
 		List<String> ids = new ArrayList<String>();
 		//ids.add("347230");
@@ -39,7 +29,7 @@ public class MyTest {
 		musicService.getMusicInfo(ids);
 	}
 	
-	//@Test
+	@Test
 	public void getSearchSuggestTest(){
 		String keywords = "海阔天空";
 		musicService.getSearchSuggest(keywords);
