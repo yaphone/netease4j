@@ -33,7 +33,27 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject getUserDetail(String id);
+	public JSONObject getUserDetail(String userId);
+	
+	/**
+	 * 获取用户信息,歌单，收藏，mv, dj 数量
+	 * @date 2017年9月16日 上午12:21:14
+	 * @param @param userId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getUserSubcount(String userId);
+	
+	/**
+	 * 获取用户歌单
+	 * @date 2017年9月16日 上午12:23:30
+	 * @param @param userId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getUserPlaylist(String userId);
 	
 	/**
 	 * 获取音乐信息

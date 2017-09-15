@@ -3,6 +3,8 @@ package cn.zhouyafeng.netease.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 import com.alibaba.fastjson.JSONObject;
 
 import cn.zhouyafeng.netease.service.impl.MusicServiceImpl;
@@ -41,6 +43,19 @@ public class MyTest {
 	public void getSearchSuggestTest(){
 		String keywords = "海阔天空";
 		JSONObject res = musicService.getSearchSuggest(keywords);
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getUserSubcontTest(){
+		//TODO
+	}
+	
+	@Test
+	public void getUserPlaylistTest() throws Exception{
+		String userId = PropertyUtil.getProperty("userinfo.properties", "userid");
+		JSONObject res = musicService.getUserPlaylist(userId);
+		
 		System.out.println(res);
 	}
 

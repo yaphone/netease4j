@@ -62,10 +62,29 @@ public class MusicServiceImpl implements IMusicService {
 	}
 	
 	@Override
-	public JSONObject getUserDetail(String id){
-		String url = URL.BASE_URL.getUrl() + "/weapi/v1/user/detail/" + id;
+	public JSONObject getUserDetail(String userId){
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/user/detail/" + userId;
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserSubcount(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JSONObject getUserPlaylist(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/user/playlist";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("uid", userId);
+		dataMap.put("limit", 1000);
+		dataMap.put("csrf_token", "");
+		
 		return httpClient.doPost(url, dataMap);
 	}
 	
