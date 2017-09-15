@@ -5,7 +5,7 @@ import org.junit.Test;
 public class PropertyUtilTest {
 	@Test
 	public void propertyTest() throws Exception{
-		PropertyUtil.setProperty("userinfo.properties", "userid", "11234");
+		//PropertyUtil.setProperty("userinfo.properties", "userid", "11234");
 		
 		String cellphone = PropertyUtil.getProperty("userinfo.properties", "phonenum");
 		String password = PropertyUtil.getProperty("userinfo.properties", "password");

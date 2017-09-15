@@ -61,5 +61,13 @@ public class MusicServiceImpl implements IMusicService {
 		
 	}
 	
+	@Override
+	public JSONObject getUserDetail(String id){
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/user/detail/" + id;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		return httpClient.doPost(url, dataMap);
+	}
+	
 
 }

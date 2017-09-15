@@ -90,13 +90,12 @@ public class HttpClient {
 		try {
 			Response resp = call.execute();
 			result = JSON.parseObject(resp.body().string());
-			System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return result;
 	}
 
 }

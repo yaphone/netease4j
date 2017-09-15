@@ -26,6 +26,16 @@ public interface IMusicService {
 	public JSONObject cellphoneLogin(String phoneNum, String password);
 	
 	/**
+	 * 获取用户详情
+	 * @date 2017年9月15日 下午10:05:02
+	 * @param @param id
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getUserDetail(String id);
+	
+	/**
 	 * 获取音乐信息
 	 * @date 2017年9月12日 下午11:57:44
 	 * @param @param ids
