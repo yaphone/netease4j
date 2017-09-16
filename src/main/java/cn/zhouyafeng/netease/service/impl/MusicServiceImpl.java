@@ -38,28 +38,7 @@ public class MusicServiceImpl implements IMusicService {
 		return httpClient.doPost(url, dataMap);
 	}
 	
-	@Override
-	public JSONObject getMusicInfo(List<String> ids) {
-		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
-		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
-		dataMap.put("ids", ids);
-		dataMap.put("br", "999000");
-		dataMap.put("csrf_token", "");
-		
-		return httpClient.doPost(url, dataMap);
-	}
 	
-	
-	@Override
-	public JSONObject getSearchSuggest(String keywords){
-		String url = URL.BASE_URL.getUrl() + "/weapi/search/suggest/web" ;
-		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
-		dataMap.put("csrf_token", "");
-		dataMap.put("s", keywords);
-		
-		return httpClient.doPost(url, dataMap);
-		
-	}
 	
 	@Override
 	public JSONObject getUserDetail(String userId){
@@ -86,6 +65,133 @@ public class MusicServiceImpl implements IMusicService {
 		dataMap.put("csrf_token", "");
 		
 		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserDjs(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/dj/program/" + userId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", "0");
+		dataMap.put("limit", "30");
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserFollows(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/user/getfollows/" + userId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", "0");
+		dataMap.put("limit", "30");
+		dataMap.put("order", "true");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserFolloweds(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/user/getfolloweds/";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("userId", userId);
+		dataMap.put("offset", "0");
+		dataMap.put("limit", "30");
+		dataMap.put("order", "true");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserEvent(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/event/get/" + userId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("time", "-1");
+		dataMap.put("getcounts", "true");
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getUserRecord(String userId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/event/get/" + userId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("time", "-1");
+		dataMap.put("getcounts", "true");
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getEvent() {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/event/get";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getTopPlaylist() {
+		String url = URL.BASE_URL.getUrl() + "/weapi/playlist/list";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("cat", "全部");
+		dataMap.put("order", "hot");
+		dataMap.put("offset", "0");
+		dataMap.put("total", "true");
+		dataMap.put("limit", "50");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getPlaylistDetail(String playlistId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v3/playlist/detail";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("id", playlistId);
+		dataMap.put("offset", "0");
+		dataMap.put("total", "true");
+		dataMap.put("limit", "1000");
+		dataMap.put("n", "1000");
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getMusicUrl(List<String> ids) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("ids", ids);
+		dataMap.put("br", "999000");
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+	@Override
+	public JSONObject search(String keywords, String type) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/search/get";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("limit", "100");
+		dataMap.put("type", type);
+		dataMap.put("s", keywords);
+		
+		return httpClient.doPost(url, dataMap);
+	}
+	
+	@Override
+	public JSONObject getSearchSuggest(String keywords){
+		String url = URL.BASE_URL.getUrl() + "/weapi/search/suggest/web" ;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("s", keywords);
+		
+		return httpClient.doPost(url, dataMap);
+		
 	}
 	
 
