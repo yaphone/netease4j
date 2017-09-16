@@ -111,12 +111,12 @@ public class MyTest {
 	public void searchTest(){
 		String keywords = "海阔天空";
 		String type = "100";
-		JSONObject res = musicService.search(keywords, type);
+		JSONObject res = musicService.getSearch(keywords, type);
 		
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getSearchSuggestTest(){
 		String keywords = "海阔天空";
 		JSONObject res = musicService.getSearchSuggest(keywords);
@@ -124,5 +124,20 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
+	//@Test
+	public void getSearchMultimatch(){
+		String keywords = "海阔天空";
+		JSONObject res = musicService.getSearchMultimatch(keywords);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getLyric(){
+		String musicId = "347230";
+		JSONObject res = musicService.getLyric(musicId);
+		
+		System.out.println(res);
+	}
 
 }

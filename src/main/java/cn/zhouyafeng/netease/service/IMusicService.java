@@ -162,7 +162,7 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject search(String keywords, String type);
+	public JSONObject getSearch(String keywords, String type);
 	
 	/**
 	 * 搜索建议,调用此接口,传入搜索关键词可获得搜索建议,搜索结果同时包含单曲,歌手,歌单,mv 信息
@@ -173,5 +173,37 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getSearchSuggest(String keywords);
+	
+	/**
+	 * 搜索多重匹配，调用此接口,传入搜索关键词可获得搜索结果
+	 * @date 2017年9月17日 上午12:27:27
+	 * @param @param keywords
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getSearchMultimatch(String keywords);
+	
+	/**
+	 * 收藏单曲到歌单,调用此接口,传入音乐 id和 limit 参数, 可获得该专辑的所有评论(需要登录)
+	 * @date 2017年9月17日 上午12:34:46
+	 * @param @param op
+	 * @param @param userId
+	 * @param @param musicId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject operatePlaylist(String op, String userId, String musicId);
+	
+	/**
+	 * 获取歌词,调用此接口,传入音乐 id 可获得对应音乐的歌词(不需要登录)
+	 * @date 2017年9月17日 上午12:36:20
+	 * @param @param musicId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getLyric(String musicId);
 
 }

@@ -172,7 +172,7 @@ public class MusicServiceImpl implements IMusicService {
 
 
 	@Override
-	public JSONObject search(String keywords, String type) {
+	public JSONObject getSearch(String keywords, String type) {
 		String url = URL.BASE_URL.getUrl() + "/weapi/search/get";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("csrf_token", "");
@@ -192,6 +192,33 @@ public class MusicServiceImpl implements IMusicService {
 		
 		return httpClient.doPost(url, dataMap);
 		
+	}
+
+
+
+	@Override
+	public JSONObject getSearchMultimatch(String keywords) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/search/suggest/multimatch" ;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("type", 1);
+		dataMap.put("s", keywords);
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	//TODO
+	@Override
+	public JSONObject operatePlaylist(String op, String userId, String musicId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public JSONObject getLyric(String musicId){
+		String url = URL.BASE_URL.getUrl() + "/weapi/song/lyric?os=osx&id=" + musicId +  "&lv=-1&kv=-1&tv=-1";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		
+		return httpClient.doPost(url, dataMap);
 	}
 	
 
