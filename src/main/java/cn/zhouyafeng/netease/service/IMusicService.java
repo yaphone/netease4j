@@ -205,5 +205,15 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getLyric(String musicId);
+	
+	/**
+	 * 获取歌曲评论 
+	 * @date 2017年9月18日 下午10:59:11
+	 * @param @param musicId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getMusicComment(String musicId);
 
 }

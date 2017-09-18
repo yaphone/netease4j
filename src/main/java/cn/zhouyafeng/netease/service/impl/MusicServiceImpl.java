@@ -220,6 +220,20 @@ public class MusicServiceImpl implements IMusicService {
 		
 		return httpClient.doPost(url, dataMap);
 	}
+
+
+
+	@Override
+	public JSONObject getMusicComment(String musicId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/resource/comments/R_SO_4_" + musicId +  "/?csrf_token=";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("rid", musicId);
+		dataMap.put("limit", 100);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
 	
 
 }

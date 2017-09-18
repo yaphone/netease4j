@@ -27,9 +27,9 @@ public class MyTest {
 	
 	//@Test
 	public void getUserDetailTest() throws Exception{
-		String id = PropertyUtil.getProperty("userinfo.properties", "userid");
+		String userId = PropertyUtil.getProperty("userinfo.properties", "userid");
+		JSONObject res = musicService.getUserDetail(userId);
 		
-		JSONObject res = musicService.getUserDetail(id);
 		System.out.println(res);
 	}
 	
@@ -132,10 +132,18 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getLyric(){
 		String musicId = "347230";
 		JSONObject res = musicService.getLyric(musicId);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getMusicCommentTest(){
+		String musicId = "186016";
+		JSONObject res = musicService.getMusicComment(musicId);
 		
 		System.out.println(res);
 	}
