@@ -215,5 +215,64 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getMusicComment(String musicId);
+	
+	/**
+	 * 获取专辑评论
+	 * @date 2017年9月19日 下午10:39:45
+	 * @param @param albumId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getAlbumComment(String albumId);
+	
+	/**
+	 * 获取歌单评论
+	 * @date 2017年9月19日 下午10:45:53
+	 * @param @param playlistId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getPlaylistComment(String playlistId);
+	
+	/**
+	 * 获取MV评论
+	 * @date 2017年9月19日 下午10:50:10
+	 * @param @param mvId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getMvComment(String mvId);
+	
+	/**
+	 * 获取电台节目评论
+	 * @date 2017年9月19日 下午11:00:42
+	 * @param @param djId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getDjComment(String djId);
+	
+	/**
+	 * 点赞
+	 * @date 2017年9月19日 下午11:17:22
+	 * @param @param id
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject upvote(String id, String type, boolean t);
+	
+	/**
+	 * 获取banner数据
+	 * @date 2017年9月19日 下午11:23:28
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getBanner();
 
 }

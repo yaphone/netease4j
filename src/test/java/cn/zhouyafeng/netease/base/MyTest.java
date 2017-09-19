@@ -140,10 +140,49 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getMusicCommentTest(){
 		String musicId = "186016";
 		JSONObject res = musicService.getMusicComment(musicId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getAlbumCommentTest(){
+		String albumId = "32311";
+		JSONObject res = musicService.getAlbumComment(albumId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getPlaylistCommentTest(){
+		String playlistId = "705123491";
+		JSONObject res = musicService.getPlaylistComment(playlistId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getMvCommentTest(){
+		String mvId = "5436712";
+		JSONObject res = musicService.getMvComment(mvId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getDjCommentTest(){
+		String djId = "794062371";
+		JSONObject res = musicService.getDjComment(djId);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getBannerTest(){
+		JSONObject res = musicService.getBanner();
 		
 		System.out.println(res);
 	}

@@ -234,6 +234,78 @@ public class MusicServiceImpl implements IMusicService {
 
 		return httpClient.doPost(url, dataMap);
 	}
+
+
+
+	@Override
+	public JSONObject getAlbumComment(String albumId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/resource/comments/R_AL_3_" + albumId +  "/?csrf_token=";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("rid", albumId);
+		dataMap.put("limit", 100);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getPlaylistComment(String playlistId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/resource/comments/A_PL_0_" + playlistId +  "/?csrf_token=";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("rid", playlistId);
+		dataMap.put("limit", 100);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getMvComment(String mvId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/resource/comments/R_MV_5_" + mvId +  "/?csrf_token=";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("rid", mvId);
+		dataMap.put("limit", 100);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getDjComment(String djId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/resource/comments/A_DJ_1_" + djId +  "/?csrf_token=";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("rid", djId);
+		dataMap.put("limit", 100);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject upvote(String id, String type, boolean t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public JSONObject getBanner(){
+		String url = URL.BASE_URL.getUrl() + "/weapi/v2/banner/get";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		
+		return httpClient.doPost(url, dataMap);
+	}
 	
 
 }
