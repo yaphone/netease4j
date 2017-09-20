@@ -274,5 +274,58 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getBanner();
+	
+	/**
+	 * 获取歌曲详情,调用此接口,传入音乐 id, 可获得歌曲详情
+	 * @date 2017年9月20日 下午6:58:16
+	 * @param @param musicId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getSongDetail(String musicId);
+	
+	/**
+	 * 获取专辑内容，调用此接口,传入专辑 id,可获得专辑内容
+	 * @date 2017年9月20日 下午8:38:32
+	 * @param @param albumId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getAlbumDetail(String albumId);
+	
+	/**
+	 * 获取歌手单曲,调用此接口,传入歌手 id,可获得歌手单曲
+	 * @date 2017年9月20日 下午8:43:26
+	 * @param @param artistId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getArtist(String artistId);
+	
+	/**
+	 * 获取歌手 mv,调用此接口,传入歌手 id,可获得歌手 mv 信息,具体 mv 播放地址可调用/mv传入此接口获得的mvid 来拿到
+	 * @date 2017年9月20日 下午8:49:32
+	 * @param @param artistId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getArtistMvs(String artistId, String offset, String limit);
+	
+	/**
+	 * 
+	 * 获取歌手专辑,调用此接口,传入歌手 id,可获得歌手专辑内容
+	 * @date 2017年9月20日 下午8:55:35
+	 * @param @param artistId
+	 * @param @param offset
+	 * @param @param limit
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getArtistAlbum(String artistId, String offset, String limit);
 
 }

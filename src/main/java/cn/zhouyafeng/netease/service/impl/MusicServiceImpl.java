@@ -1,11 +1,15 @@
 package cn.zhouyafeng.netease.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.zhouyafeng.netease.enums.URL;
@@ -306,6 +310,80 @@ public class MusicServiceImpl implements IMusicService {
 		
 		return httpClient.doPost(url, dataMap);
 	}
-	
+
+
+
+	@Override
+	public JSONObject getSongDetail(String musicId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v3/song/detail";
+		Map<String, String> idMap = new HashMap<String, String>();
+		idMap.put("id", musicId);
+		List<Map<String, String>> idMapList = new ArrayList<Map<String,String>>();
+		idMapList.add(idMap);
+
+		List<String> ids = new ArrayList<String>();
+		ids.add(musicId);
+		
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("c", JSON.toJSONString(idMapList));
+		dataMap.put("ids", ids);
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getAlbumDetail(String albumId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/album/" + albumId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getArtist(String artistId) {
+		String offset = "0";
+		String limit = "100";
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/artist/" + artistId + "?offset=" + offset + "&limit=" + limit;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getArtistMvs(String artistId, String offset, String limit) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/artist/mvs";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("artistId", artistId);
+		dataMap.put("total", true);
+		dataMap.put("offset", offset);
+		dataMap.put("limit", limit);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getArtistAlbum(String artistId, String offset, String limit) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/artist/albums/" + artistId;
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("total", true);
+		dataMap.put("offset", offset);
+		dataMap.put("limit", limit);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
 
 }

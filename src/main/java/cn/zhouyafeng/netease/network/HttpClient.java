@@ -79,7 +79,6 @@ public class HttpClient {
 	 */
 	public JSONObject doPost(String url, LinkedHashMap<String, Object> dataMap) {
 		JSONObject result = null;
-		
 		LinkedHashMap<String, String> paramMap = SecurityUtil.encrypt(dataMap);
 		String requestParams = CommonTools.createRequestParam(paramMap);
 		RequestBody requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),

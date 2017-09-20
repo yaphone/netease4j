@@ -180,9 +180,53 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getBannerTest(){
 		JSONObject res = musicService.getBanner();
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getSongDetailTest(){
+		String musicId = "347230";
+		JSONObject res = musicService.getSongDetail(musicId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getAlbumDetailTest(){
+		String albumId = "32311";
+		JSONObject res = musicService.getAlbumDetail(albumId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getArtistTest(){
+		String artistId = "6452";
+		JSONObject res = musicService.getArtist(artistId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getArtistMvsTest(){
+		String artistId = "6452";
+		String offset = "0";
+		String limit = "10";
+		JSONObject res = musicService.getArtistMvs(artistId, offset, limit);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getArtistAlbumTest(){
+		String artistId = "6452";
+		String offset = "0";
+		String limit = "10";
+		JSONObject res = musicService.getArtistAlbum(artistId, offset, limit);
 		
 		System.out.println(res);
 	}
