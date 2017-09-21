@@ -327,5 +327,57 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getArtistAlbum(String artistId, String offset, String limit);
+	
+	/**
+	 * 获取歌手描述,调用此接口,传入歌手 id,可获得歌手描述
+	 * @date 2017年9月21日 下午11:11:22
+	 * @param @param artistId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getArtistDesc(String artistId);
+	
+	/**
+	 * 获取相似歌手,,调用此接口,传入歌手 id,可获得相似歌手
+	 * @date 2017年9月21日 下午11:15:29
+	 * @param @param artistId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	//TODO can not work
+	public JSONObject getSimilarArtist(String artistId);
+	
+	/**
+	 * 获取相似歌单,调用此接口,传入歌曲 id,可获得相似歌单
+	 * @date 2017年9月21日 下午11:26:53
+	 * @param @param musicId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	//TODO can not work
+	public JSONObject getSimilarPlaylist(String musicId, String offset, String limit);
+	
+	/**
+	 * 获取相似 mv,调用此接口,传入 mvid 可获取相似 mv 
+	 * @date 2017年9月21日 下午11:33:45
+	 * @param @param mvId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getSimilarMv(String mvId);
+	
+	/**
+	 * 获取相似音乐,调用此接口,传入歌曲 id,可获得相似歌曲
+	 * @date 2017年9月21日 下午11:37:33
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	//TODO {"code":301}
+	public JSONObject getSimilarSong(String songId, String offset, String limit);
 
 }

@@ -386,4 +386,64 @@ public class MusicServiceImpl implements IMusicService {
 	}
 
 
+
+	@Override
+	public JSONObject getArtistDesc(String artistId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/artist/introduction";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("id", artistId);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override //TODO can not work
+	public JSONObject getSimilarArtist(String artistId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/discovery/simiArtist";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("artistid", artistId);
+		dataMap.put("csrf_token", "");
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getSimilarPlaylist(String musicId, String offset, String limit) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/discovery/simiPlaylist";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("songid", musicId);
+		dataMap.put("offset", offset);
+		dataMap.put("limit", limit);
+
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+	@Override
+	public JSONObject getSimilarMv(String mvId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/discovery/simiMV";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("mvid", mvId);
+	
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getSimilarSong(String songId, String offset, String limit) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/discovery/simiSong";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("songid", songId);
+		dataMap.put("offset", offset);
+		dataMap.put("limit", limit);
+	
+		return httpClient.doPost(url, dataMap);
+	}
+
+
 }

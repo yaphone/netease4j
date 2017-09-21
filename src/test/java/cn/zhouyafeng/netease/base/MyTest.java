@@ -221,12 +221,57 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getArtistAlbumTest(){
 		String artistId = "6452";
 		String offset = "0";
 		String limit = "10";
 		JSONObject res = musicService.getArtistAlbum(artistId, offset, limit);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getArtistDescTest(){
+		String artistId = "6452";
+		JSONObject res = musicService.getArtistDesc(artistId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getSimilarArtistTest(){
+		String artistId = "6452";
+		JSONObject res = musicService.getSimilarArtist(artistId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getSimilarPlaylist(){
+		String musicId = "347230";
+		String offset = "0";
+		String limit = "50";
+		
+		JSONObject res = musicService.getSimilarPlaylist(musicId, offset, limit);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getSimilarMvTest(){
+		String mvId = "5436712";
+		JSONObject res = musicService.getSimilarMv(mvId);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getSimilarSongTest(){
+		String songId = "347230";
+		String offset = "0";
+		String limit = "100";
+		JSONObject res = musicService.getSimilarSong(songId, offset, limit);
 		
 		System.out.println(res);
 	}
