@@ -446,4 +446,42 @@ public class MusicServiceImpl implements IMusicService {
 	}
 
 
+
+	@Override
+	public JSONObject getSimilarUser(String songId) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/discovery/simiUser";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("songid", songId);
+		dataMap.put("offset", 0);
+		dataMap.put("limit", 50);
+	
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getRecommendResource() {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/discovery/recommend/resource";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+
+
+	@Override
+	public JSONObject getRecommendSongs() {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v1/discovery/recommend/songs";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("offset", 0);
+		dataMap.put("total", true);
+		dataMap.put("limit", 20);
+		dataMap.put("csrf_token", "");
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+
 }

@@ -379,5 +379,35 @@ public interface IMusicService {
 	 */
 	//TODO {"code":301}
 	public JSONObject getSimilarSong(String songId, String offset, String limit);
+	
+	/**
+	 * 获取最近5个听了这首歌的用户,调用此接口,传入歌曲 id,最近5个听了这首歌的用户
+	 * @date 2017年9月22日 下午9:50:23
+	 * @param @param songId
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	//TODO {"code":301}
+	public JSONObject getSimilarUser(String songId);
+	
+	/**
+	 * 获取每日推荐歌单,调用此接口,可获得每日推荐歌单(需要登录)
+	 * @date 2017年9月22日 下午9:57:40
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	//TODO
+	public JSONObject getRecommendResource();
+	
+	/**
+	 * 获取每日推荐歌曲,调用此接口,可获得每日推荐歌曲(需要登录)
+	 * @date 2017年9月22日 下午10:05:38
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getRecommendSongs();
 
 }

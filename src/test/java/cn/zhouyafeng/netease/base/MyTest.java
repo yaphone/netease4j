@@ -266,12 +266,34 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getSimilarSongTest(){
 		String songId = "347230";
 		String offset = "0";
 		String limit = "100";
 		JSONObject res = musicService.getSimilarSong(songId, offset, limit);
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void getSimilarUserTest(){
+		String songId = "347230";
+		JSONObject res = musicService.getSimilarUser(songId);
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getRecommendResourceTest(){
+		JSONObject res = musicService.getRecommendResource();
+		
+		System.out.println(res);
+	}
+	
+	//@Test
+	public void getRecommendSongsTest(){
+		JSONObject res = musicService.getRecommendSongs();
 		
 		System.out.println(res);
 	}
