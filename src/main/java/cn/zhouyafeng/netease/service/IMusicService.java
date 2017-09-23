@@ -409,5 +409,14 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getRecommendSongs();
+	
+	/**
+	 * 私人FM( 需要登录)
+	 * @date 2017年9月23日 下午11:35:20
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getPersonalFm();
 
 }
