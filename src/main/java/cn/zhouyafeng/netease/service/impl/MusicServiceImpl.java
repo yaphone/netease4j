@@ -492,4 +492,16 @@ public class MusicServiceImpl implements IMusicService {
 	}
 
 
+
+	@Override
+	public JSONObject dailySignIn(int type) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/point/dailyTask";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("type", type);
+		
+		return httpClient.doPost(url, dataMap);
+	}
+
+
 }

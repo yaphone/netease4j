@@ -276,7 +276,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	@Test
+	//@Test
 	public void getSimilarUserTest(){
 		String songId = "347230";
 		JSONObject res = musicService.getSimilarUser(songId);
@@ -294,6 +294,13 @@ public class MyTest {
 	//@Test
 	public void getRecommendSongsTest(){
 		JSONObject res = musicService.getRecommendSongs();
+		
+		System.out.println(res);
+	}
+	
+	@Test
+	public void dailySignInTest(){
+		JSONObject res = musicService.dailySignIn(0);
 		
 		System.out.println(res);
 	}

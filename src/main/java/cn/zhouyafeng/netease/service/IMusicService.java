@@ -418,5 +418,15 @@ public interface IMusicService {
 	 *
 	 */
 	public JSONObject getPersonalFm();
+	
+	/**
+	 * 调用此接口,传入签到类型, 签到类型, 其中 0 为安卓端签到,1为 web/PC 签到,其中安卓端签到可获得3点经验, web/PC 端签到可获得2点经验
+	 * @date 2017年9月25日 下午11:28:10
+	 * @param @param type
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject dailySignIn(int type);
 
 }
