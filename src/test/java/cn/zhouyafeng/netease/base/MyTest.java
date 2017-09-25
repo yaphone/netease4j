@@ -22,7 +22,7 @@ public class MyTest {
 		String phoneNum = "18980869903";
 		String password = "WO19891226";
 		JSONObject res = musicService.cellphoneLogin(phoneNum, password);
-		System.out.println(res);
+		//System.out.println(res);
 	}
 	
 	//@Test

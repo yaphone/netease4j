@@ -1,7 +1,10 @@
 package cn.zhouyafeng.netease.network;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -9,6 +12,9 @@ import com.alibaba.fastjson.JSONObject;
 import cn.zhouyafeng.netease.utils.CommonTools;
 import cn.zhouyafeng.netease.utils.SecurityUtil;
 import okhttp3.Call;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -26,7 +32,7 @@ import okhttp3.Response;
 public class HttpClient {
 	private static HttpClient instance;
 
-	private static OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
+	private static OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
 		@Override
 		public Response intercept(Chain chain) throws IOException {
 			Request request = chain.request().newBuilder().addHeader("Accept", "*/*")
@@ -40,8 +46,20 @@ public class HttpClient {
 					.build();
 			return chain.proceed(request);
 		}
+	}).cookieJar(new CookieJar() {
+	    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+	    @Override
+	    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+	    	System.out.println(cookies);
+	        cookieStore.put(url.host(), cookies);
+	    }
+	    @Override
+	    public List<Cookie> loadForRequest(HttpUrl url) {
+	        List<Cookie> cookies = cookieStore.get(url.host());
+	        return cookies != null ? cookies : new ArrayList<Cookie>();
+	    }
 	}).build();
-
+	
 	private HttpClient() {
 
 	}
