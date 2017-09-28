@@ -50,7 +50,6 @@ public class HttpClient {
 	    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
 	    @Override
 	    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-	    	System.out.println(cookies);
 	        cookieStore.put(url.host(), cookies);
 	    }
 	    @Override
