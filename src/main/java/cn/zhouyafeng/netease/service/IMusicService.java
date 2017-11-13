@@ -135,6 +135,16 @@ public interface IMusicService {
 	public JSONObject getPlaylistDetail(String playlistId);
 	
 	/**
+	 * 获取音乐 url, 调用此接口,传入的音乐 id(单个),可以获取对应的音乐的 url(不需要登录)
+	 * @date 2017年11月11日 下午9:34:11
+	 * @param @param id
+	 * @param @return
+	 * @return JSONObject
+	 *
+	 */
+	public JSONObject getMusicUrl(long id);
+	
+	/**
 	 * 获取音乐 url, 调用此接口,传入的音乐 id(可多个),可以获取对应的音乐的 url(不需要登录)
 	 * @date 2017年9月16日 下午6:37:54
 	 * @param @param ids
@@ -142,7 +152,7 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject getMusicUrl(List<String> ids);
+	public JSONObject getMusicUrl(List<Long> ids);
 	
 	/**
 	 * 搜索

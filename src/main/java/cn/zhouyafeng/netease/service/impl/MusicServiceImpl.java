@@ -162,9 +162,18 @@ public class MusicServiceImpl implements IMusicService {
 		
 		return httpClient.doPost(url, dataMap);
 	}
+	
+	@Override
+	public JSONObject getMusicUrl(long id) {
+		List<Long> ids = new ArrayList<Long>();
+		ids.add(id);
+		JSONObject musicUrls = this.getMusicUrl(ids);
+		JSONObject musicUrl = musicUrls.getJSONArray("data").getJSONObject(0);
+		return musicUrl;
+	}
 
 	@Override
-	public JSONObject getMusicUrl(List<String> ids) {
+	public JSONObject getMusicUrl(List<Long> ids) {
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("ids", ids);

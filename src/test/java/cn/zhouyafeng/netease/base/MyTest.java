@@ -17,15 +17,15 @@ public class MyTest {
 	MusicServiceImpl musicService = new MusicServiceImpl();
 	
 	
-	//@Test
+	@Test
 	public void loginTest(){
 		String phoneNum = "18980869903";
 		String password = "WO19891226";
 		JSONObject res = musicService.cellphoneLogin(phoneNum, password);
-		//System.out.println(res);
+		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getUserDetailTest() throws Exception{
 		String userId = PropertyUtil.getProperty("userinfo.properties", "userid");
 		JSONObject res = musicService.getUserDetail(userId);
@@ -34,12 +34,12 @@ public class MyTest {
 	}
 	
 	
-	//@Test
+	@Test
 	public void getUserSubcontTest(){
 		//TODO
 	}
 	
-	//@Test
+	@Test
 	public void getUserPlaylistTest() throws Exception{
 		String userId = PropertyUtil.getProperty("userinfo.properties", "userid");
 		JSONObject res = musicService.getUserPlaylist(userId);
@@ -47,49 +47,49 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getUserDjListTest() {
 		JSONObject res = musicService.getUserDjs(userId);
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getUserFollowsTest(){
 		JSONObject res = musicService.getUserFollows(userId);
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getUserFollowedsTest(){
 		JSONObject res = musicService.getUserFolloweds(userId);
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getUserEventTest(){
 		JSONObject res = musicService.getUserEvent(userId);
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getEventTest(){
 		JSONObject res = musicService.getEvent();
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getTopPlaylistTest(){
 		JSONObject res = musicService.getTopPlaylist();
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getPlaylistDetailTest(){
 		String playlistId = "24381616";
 		JSONObject res = musicService.getPlaylistDetail(playlistId);
@@ -97,17 +97,17 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getMusicUrlTest(){
-		List<String> ids = new ArrayList<String>();
-		ids.add("347230");
-		ids.add("347231");
+		List<Long> ids = new ArrayList<Long>();
+		ids.add(347230L);
+		ids.add(347231L);
 		JSONObject res = musicService.getMusicUrl(ids);
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void searchTest(){
 		String keywords = "海阔天空";
 		String type = "100";
@@ -116,7 +116,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSearchSuggestTest(){
 		String keywords = "海阔天空";
 		JSONObject res = musicService.getSearchSuggest(keywords);
@@ -124,7 +124,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSearchMultimatch(){
 		String keywords = "海阔天空";
 		JSONObject res = musicService.getSearchMultimatch(keywords);
@@ -132,7 +132,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getLyric(){
 		String musicId = "347230";
 		JSONObject res = musicService.getLyric(musicId);
@@ -140,7 +140,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getMusicCommentTest(){
 		String musicId = "186016";
 		JSONObject res = musicService.getMusicComment(musicId);
@@ -148,7 +148,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getAlbumCommentTest(){
 		String albumId = "32311";
 		JSONObject res = musicService.getAlbumComment(albumId);
@@ -156,7 +156,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getPlaylistCommentTest(){
 		String playlistId = "705123491";
 		JSONObject res = musicService.getPlaylistComment(playlistId);
@@ -164,7 +164,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getMvCommentTest(){
 		String mvId = "5436712";
 		JSONObject res = musicService.getMvComment(mvId);
@@ -172,7 +172,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getDjCommentTest(){
 		String djId = "794062371";
 		JSONObject res = musicService.getDjComment(djId);
@@ -180,14 +180,14 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getBannerTest(){
 		JSONObject res = musicService.getBanner();
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSongDetailTest(){
 		String musicId = "347230";
 		JSONObject res = musicService.getSongDetail(musicId);
@@ -195,7 +195,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getAlbumDetailTest(){
 		String albumId = "32311";
 		JSONObject res = musicService.getAlbumDetail(albumId);
@@ -203,7 +203,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getArtistTest(){
 		String artistId = "6452";
 		JSONObject res = musicService.getArtist(artistId);
@@ -211,7 +211,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getArtistMvsTest(){
 		String artistId = "6452";
 		String offset = "0";
@@ -221,7 +221,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getArtistAlbumTest(){
 		String artistId = "6452";
 		String offset = "0";
@@ -231,7 +231,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getArtistDescTest(){
 		String artistId = "6452";
 		JSONObject res = musicService.getArtistDesc(artistId);
@@ -239,7 +239,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSimilarArtistTest(){
 		String artistId = "6452";
 		JSONObject res = musicService.getSimilarArtist(artistId);
@@ -247,7 +247,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSimilarPlaylist(){
 		String musicId = "347230";
 		String offset = "0";
@@ -258,7 +258,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSimilarMvTest(){
 		String mvId = "5436712";
 		JSONObject res = musicService.getSimilarMv(mvId);
@@ -266,7 +266,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSimilarSongTest(){
 		String songId = "347230";
 		String offset = "0";
@@ -276,7 +276,7 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getSimilarUserTest(){
 		String songId = "347230";
 		JSONObject res = musicService.getSimilarUser(songId);
@@ -284,14 +284,14 @@ public class MyTest {
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getRecommendResourceTest(){
 		JSONObject res = musicService.getRecommendResource();
 		
 		System.out.println(res);
 	}
 	
-	//@Test
+	@Test
 	public void getRecommendSongsTest(){
 		JSONObject res = musicService.getRecommendSongs();
 		
