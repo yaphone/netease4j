@@ -221,7 +221,7 @@ public class MusicServiceImpl implements IMusicService {
 		return null;
 	}
 	
-	public JSONObject getLyric(String musicId){
+	public JSONObject getLyric(long musicId){
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/lyric?os=osx&id=" + musicId +  "&lv=-1&kv=-1&tv=-1";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		

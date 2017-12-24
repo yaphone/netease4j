@@ -214,7 +214,7 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject getLyric(String musicId);
+	public JSONObject getLyric(long musicId);
 	
 	/**
 	 * 获取歌曲评论 
