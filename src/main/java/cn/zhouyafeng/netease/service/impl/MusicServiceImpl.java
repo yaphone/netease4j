@@ -1,21 +1,15 @@
 package cn.zhouyafeng.netease.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.network.HttpClient;
 import cn.zhouyafeng.netease.service.IMusicService;
 import cn.zhouyafeng.netease.utils.SecurityUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  * 音乐服务实现类
@@ -233,8 +227,6 @@ public class MusicServiceImpl implements IMusicService {
 		
 		return httpClient.doPost(url, dataMap);
 	}
-
-
 
 	@Override
 	public JSONObject getMusicComment(String musicId) {
@@ -509,6 +501,20 @@ public class MusicServiceImpl implements IMusicService {
 		dataMap.put("csrf_token", "");
 		dataMap.put("type", type);
 		
+		return httpClient.doPost(url, dataMap);
+	}
+
+	@Override
+	public JSONObject getRankList(int id, int limit, int offset) {
+		String url = URL.BASE_URL.getUrl() + "/weapi/v3/playlist/detail";
+		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		dataMap.put("csrf_token", "");
+		dataMap.put("id", id);
+		dataMap.put("limit", limit);
+		dataMap.put("offset", offset);
+		dataMap.put("total", true);
+		dataMap.put("n", 1000);
+
 		return httpClient.doPost(url, dataMap);
 	}
 

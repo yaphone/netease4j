@@ -1,14 +1,13 @@
 package cn.zhouyafeng.netease.base;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
-import com.alibaba.fastjson.JSONObject;
-
+import cn.zhouyafeng.netease.enums.RankListType;
 import cn.zhouyafeng.netease.service.impl.MusicServiceImpl;
 import cn.zhouyafeng.netease.utils.PropertyUtil;
+import com.alibaba.fastjson.JSONObject;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyTest {
 	
@@ -302,6 +301,13 @@ public class MyTest {
 	public void dailySignInTest(){
 		JSONObject res = musicService.dailySignIn(0);
 		
+		System.out.println(res);
+	}
+
+	@Test
+	public void getRankListTest(){
+		JSONObject res = musicService.getRankList(RankListType.CHINA_TOP.getId(), 30, 0);
+
 		System.out.println(res);
 	}
 
