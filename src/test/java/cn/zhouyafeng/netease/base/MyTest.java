@@ -98,8 +98,8 @@ public class MyTest {
 	
 	@Test
 	public void getMusicUrlTest(){
-		List<Long> ids = new ArrayList<Long>();
-		ids.add(509311657L);
+		List<String> ids = new ArrayList<String>();
+		ids.add("509311657");
 		JSONObject res = musicService.getMusicUrl(ids);
 		
 		System.out.println(res);
@@ -305,7 +305,7 @@ public class MyTest {
 
 	@Test
 	public void getRankListTest(){
-		JSONObject res = musicService.getRankList(RankListType.CHINA_TOP.getId(), 30, 0);
+		JSONObject res = musicService.getRankList(RankListType.CHINA_TOP.getPlaylistId(), 30, 0);
 
 		System.out.println(res);
 	}

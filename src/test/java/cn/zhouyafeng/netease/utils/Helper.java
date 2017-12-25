@@ -18,7 +18,7 @@ public class Helper {
 //    	System.out.println(baseInfo.getCode());
 //    	System.out.println(baseInfo.getResult().getSongCount());
 //    	System.out.println(baseInfo.getResult().getSongs().get(0).getId());
-    	long id = baseResponse.getResult().getSongs().get(0).getId();
+    	String id = String.valueOf(baseResponse.getResult().getSongs().get(0).getId());
     	JSONObject res2 = musicService.getMusicUrl(id);
     	MusicResponse musicResponse = JSON.toJavaObject(res2, MusicResponse.class);
     	//System.out.println(musicResponse.getUrl());

@@ -1,5 +1,6 @@
 package cn.zhouyafeng.netease.service.impl;
 
+import cn.zhouyafeng.netease.enums.RankListType;
 import cn.zhouyafeng.netease.enums.URL;
 import cn.zhouyafeng.netease.network.HttpClient;
 import cn.zhouyafeng.netease.service.IMusicService;
@@ -158,8 +159,8 @@ public class MusicServiceImpl implements IMusicService {
 	}
 	
 	@Override
-	public JSONObject getMusicUrl(long id) {
-		List<Long> ids = new ArrayList<Long>();
+	public JSONObject getMusicUrl(String id) {
+		List<String> ids = new ArrayList<String>();
 		ids.add(id);
 		JSONObject musicUrls = this.getMusicUrl(ids);
 		JSONObject musicUrl = musicUrls.getJSONArray("data").getJSONObject(0);
@@ -167,7 +168,7 @@ public class MusicServiceImpl implements IMusicService {
 	}
 
 	@Override
-	public JSONObject getMusicUrl(List<Long> ids) {
+	public JSONObject getMusicUrl(List<String> ids) {
 		String url = URL.BASE_URL.getUrl() + "/weapi/song/enhance/player/url";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("ids", ids);
@@ -506,10 +507,11 @@ public class MusicServiceImpl implements IMusicService {
 
 	@Override
 	public JSONObject getRankList(int id, int limit, int offset) {
+		int playlistId = RankListType.getPlaylistId(id);
 		String url = URL.BASE_URL.getUrl() + "/weapi/v3/playlist/detail";
 		LinkedHashMap<String, Object> dataMap = new LinkedHashMap<String, Object>();
 		dataMap.put("csrf_token", "");
-		dataMap.put("id", id);
+		dataMap.put("id", playlistId);
 		dataMap.put("limit", limit);
 		dataMap.put("offset", offset);
 		dataMap.put("total", true);

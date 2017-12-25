@@ -142,7 +142,7 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject getMusicUrl(long id);
+	public JSONObject getMusicUrl(String id);
 	
 	/**
 	 * 获取音乐 url, 调用此接口,传入的音乐 id(可多个),可以获取对应的音乐的 url(不需要登录)
@@ -152,7 +152,7 @@ public interface IMusicService {
 	 * @return JSONObject
 	 *
 	 */
-	public JSONObject getMusicUrl(List<Long> ids);
+	public JSONObject getMusicUrl(List<String> ids);
 	
 	/**
 	 * 搜索

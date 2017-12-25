@@ -31,24 +31,27 @@ public enum RankListType {
     NETEASEXIHA(23, 991319590); //云音乐嘻哈榜
 
     private int idx;
-    private int id;
+    private int playlistId;
 
-    RankListType(int idx, int id) {
+    RankListType(int idx, int playlistId) {
         this.idx = idx;
-        this.id = id;
+        this.playlistId = playlistId;
     }
 
-    public void setIdx(int idx) {
-        this.idx = idx;
+    public int getIdx() {return idx;}
+
+    public int getPlaylistId() {
+        return playlistId;
     }
 
-
-    public void setId() {
-        this.id = id;
+    public static int getPlaylistId(int idx){
+        for(RankListType type: RankListType.values()){
+            if(idx == type.getIdx()){
+                return type.getPlaylistId();
+            }
+        }
+        return -1;
     }
 
-    public int getId() {
-        return id;
-    }
 
 }
